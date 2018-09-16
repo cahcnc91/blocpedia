@@ -1,11 +1,20 @@
 {
   "name": "blocpedia",
   "version": "1.0.0",
-  "description": "a ap to share, collaborate and create wikis\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[Dp\u001b[D\u001b[D\u001b[D\u001b[Dn app to create, collaborate and share wikis",
+  "description": "an appp to share, collaborate and create wikis",
   "main": "src/server.js",
   "scripts": {
-    "test": "export NODE_ENV=test && jasmine"
+    "test": "set NODE_ENV=test && jasmine",
+    "start": "node src/server.js"
   },
   "author": "Camila",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "jasmine": "^3.0.0",
+    "request": "^2.83.0"
+  },
+  "dependencies": {
+    "dotenv": "^5.0.0",
+    "express": "^4.16.2"
+  }
 }

@@ -8,8 +8,7 @@
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
-    "test": "set NODE_ENV=test && jasmine",
-    "postinstall": "bower install && grunt build"
+    "test": "set NODE_ENV=test && jasmine"
   },
   "author": "Camila",
   "license": "ISC",

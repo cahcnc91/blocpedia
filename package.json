@@ -1,6 +1,9 @@
 {
   "name": "blocpedia",
   "version": "1.0.0",
+  "engines": {
+    "node": "9.4.0"
+  },
   "description": "an appp to share, collaborate and create wikis",
   "main": "src/server.js",
   "scripts": {

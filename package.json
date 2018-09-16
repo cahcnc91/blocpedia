@@ -4,8 +4,9 @@
   "description": "an appp to share, collaborate and create wikis",
   "main": "src/server.js",
   "scripts": {
+    "start": "node src/server.js",
     "test": "set NODE_ENV=test && jasmine",
-    "start": "node src/server.js"
+    "postinstall": "bower install && grunt build"
   },
   "author": "Camila",
   "license": "ISC",
@@ -15,6 +16,7 @@
   },
   "dependencies": {
     "dotenv": "^5.0.0",
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "latest-version": "^4.0.0"
   }
 }

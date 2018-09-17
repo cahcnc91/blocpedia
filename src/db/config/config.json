@@ -1,0 +1,29 @@
+{
+  "development": {
+    "username": "admin",
+    "password": null,
+    "database": "blocpedia-dev",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "logging": false,
+    "operatorsAliases": false
+  },
+  "test": {
+    "username": "admin",
+    "password": null,
+    "database": "blocpedia-test",
+    "dialect": "postgres",
+    "logging": false,
+    "operatorsAliases": false
+  },
+  "production": {
+    "username": "admin",
+    "password": null,
+    "database": "blocpedia-production",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "logging": false,
+    "operatorsAliases": false,
+    "use_env_variable": "DATABASE_URL"
+  }
+}

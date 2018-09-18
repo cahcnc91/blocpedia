@@ -1,1 +1,41 @@
-<h1>Blocpedia</h1>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include ./partials/head.ejs %>
+  </head>
+  <body>
+
+    <% include ./partials/navbar.ejs %>
+
+      <main class="container">
+
+        <!-- Jumbotron Header -->
+        <header class="page-header small text-center" "pagination-centered">
+          <h1 class="display-3">Blocpedia: Social, Markdown Wikis</h1>
+        </header>
+
+        <section class="jumbotron text-center">
+            <h3 class="card-title">Create and share Markdown Wikis</h3>
+            <button class="btn btn-success">Sign Up</button>
+        </section>
+        
+        <section class="row justify-content-center plans">
+          <div class="col-lg-3 text-center">
+            <h5 class="card-title">Create as many public <br>wikis as you want!</h5>
+            <p class="card-text">FREE PLAN<br>$0</p>
+          </div>
+
+          <div class="col-lg-3 text-center">
+            <h5 class="card-title">Create private wikis!</h5>
+            <p class="card-text">PREMIUM PLAN<br>$10/month</p>
+
+          </div>
+        </section>
+
+
+      </main>
+      <!-- /.container -->
+      <% include ./partials/baseScripts.ejs %>
+      
+    </body>
+</html>

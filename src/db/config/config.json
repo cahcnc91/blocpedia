@@ -19,7 +19,7 @@
   "production": {
     "username": "admin",
     "password": null,
-    "database": "blocpedia-production",
+    "database": "cahcnc91-blocpedia",
     "host": "127.0.0.1",
     "dialect": "postgres",
     "logging": false,

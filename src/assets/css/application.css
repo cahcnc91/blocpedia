@@ -1,3 +1,20 @@
 body {
-  padding-top: 54px;
+  padding-top: 70px;
+}
+
+.jumbotron {
+  width: 55%;
+  background-color: #e3e0cc;
+  display: block;
+  margin: auto;
+  padding: 5%;
+  margin-top:3%;
+}
+
+.jumbotron h3 {
+  padding: 3%;
+}
+
+section.plans {
+  margin-top: 5%;
 }

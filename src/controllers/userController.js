@@ -25,20 +25,25 @@ module.exports = {
                 passport.authenticate("local")(req, res, () => {
                     console.log('USER CREATED SUCCESSFULLY!')
                     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-                    
                     console.log('Sending email');
-                    console.log(process.env.SENDGRID_API_KEY);
-                    console.log(SENDGRID_API_KEY);
                     const msg = {
                       to: newUser.email,
-                      from: 'test@example.com',
+                      from: 'test@gmail.com',
                       subject: 'Thanks for signing up!',
                       text: 'Welcome to Blocpedia!',
                       html: '<strong>Make wikis now!</strong>',
                     };
-                    console.log(newUser.email);
-                    sgMail.send(msg);
-                    console.log(msg);
+                    sgMail.send(msg).then( () => {
+                        }).
+                          catch( error => {
+                            console.error(error.toString());
+                      
+                            //Extract error msg
+                            const {message, code, response} = error;
+                      
+                            //Extract response msg
+                            const {headers, body} = response;
+                          });
                 
                     req.flash("notice", "You've successfully signed in!");
                     res.redirect("/");

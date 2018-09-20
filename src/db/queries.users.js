@@ -14,7 +14,6 @@ module.exports = {
       password: hashedPassword
     })
     .then((user) => {
-
       callback(null, user);
     })
     .catch((err) => {

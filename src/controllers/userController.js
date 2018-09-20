@@ -23,9 +23,7 @@ module.exports = {
             } else {
                         
                 passport.authenticate("local")(req, res, () => {
-                    console.log('USER CREATED SUCCESSFULLY!')
                     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-                    console.log('Sending email');
                     const msg = {
                       to: newUser.email,
                       from: 'test@gmail.com',

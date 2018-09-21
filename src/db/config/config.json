@@ -17,13 +17,13 @@
     "operatorsAliases": false
   },
   "production": {
-    "username": "admin",
+    "username": "postgres",
     "password": null,
     "database": "cahcnc91-blocpedia",
     "host": "127.0.0.1",
     "dialect": "postgres",
     "logging": false,
     "operatorsAliases": false,
-    "use_env_variable": "HEROKU_POSTGRESQL_PUCE_URL"
+    "use_env_variable": "DATABASE_URL"
   }
 }

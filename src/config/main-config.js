@@ -18,8 +18,8 @@ module.exports = {
         app.use(expressValidator());
         app.use(session({
             secret: process.env.cookieSecret,
-            resave: false,
-            saveUninitialized: false,
+            resave: true,
+            saveUninitialized: true,
             cookie: { maxAge: 1.21e+9 }
         }));
         app.use(flash());

@@ -7,6 +7,8 @@ const session = require("express-session");
 const flash = require("express-flash");
 const passportConfig = require("./passport-config");
 const logger = require('morgan');
+var cookieSession = require('cookie-session');
+var cookieParser = require('cookie-parser');
 
 
 
@@ -16,6 +18,7 @@ module.exports = {
         app.set("view engine", "ejs");
         app.use(bodyParser.urlencoded({ extended: true }));
         app.use(expressValidator());
+        app.use(cookieParser());
         app.use(session({
             secret: process.env.cookieSecret,
             resave: true,

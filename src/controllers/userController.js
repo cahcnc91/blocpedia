@@ -2,6 +2,7 @@ const userQueries = require("../db/queries.users.js");
 const passport = require("passport");
 const sgMail = require('@sendgrid/mail');
 
+
 module.exports = {
 
     signUp(req, res, next){
@@ -25,7 +26,7 @@ module.exports = {
                         
                 passport.authenticate("local")(req, res, () => {
                     var SENDGRID_API_KEY = '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';
-                    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+                    sgMail.setApiKey(SENDGRID_API_KEY);
                     const msg = {
                       to: newUser.email,
                       from: 'test@gmail.com',
@@ -59,15 +60,29 @@ module.exports = {
     },
 
     signIn(req, res, next){
-        passport.authenticate("local")(req, res, function () {
-          if(!req.user){
-            req.flash("notice", "Sign in failed. Please try again.")
-            res.redirect("/users/sign_in");
-          } else {
-            req.flash("notice", "You've successfully signed in!");
-            res.redirect("/");
-          }
+
+        passport.authenticate('local', function(err, user, info) {
+            if (err) { return next(err); }
+            if (!user) { 
+                req.flash("notice", "Login info incorrect!");
+                return res.redirect('/users/sign_in'); 
+            }
+            req.logIn(user, function(err) {
+              if (err) { return next(err); }
+              return res.redirect('/');
+            });
+          })(req, res, next);
+
+       /* passport.authenticate("local")(req, res, function () {
+            if(!user){
+              
+              res.redirect("/users/sign_in");
+            } else {
+              req.flash("notice", "You've successfully signed in!");
+              res.redirect("/");
+            }
         })
+        */
     },
 
     signOut(req, res, next){

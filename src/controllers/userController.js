@@ -24,6 +24,7 @@ module.exports = {
             } else {
                         
                 passport.authenticate("local")(req, res, () => {
+                    var SENDGRID_API_KEY = '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';
                     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
                     const msg = {
                       to: newUser.email,
@@ -33,16 +34,17 @@ module.exports = {
                       html: '<strong>Make wikis now!</strong>',
                     };
                     sgMail.send(msg).then( () => {
-                        }).
-                          catch( error => {
-                            console.error(error.toString());
-                      
-                            //Extract error msg
-                            const {message, code, response} = error;
-                      
-                            //Extract response msg
-                            const {headers, body} = response;
-                          });
+                    }).
+                      catch( error => {
+                        console.error(error.toString());
+                  
+                        //Extract error msg
+                        const {message, code, response} = error;
+                  
+                        //Extract response msg
+                        const {headers, body} = response;
+                      });
+                       
                 
                     req.flash("notice", "You've successfully signed in!");
                     res.redirect("/");

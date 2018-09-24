@@ -29,8 +29,7 @@ module.exports = class ApplicationPolicy {
    
 
      edit() {
-       return this.new() &&
-         this.record ;
+      return this.user != null;
      }
    
      update() {

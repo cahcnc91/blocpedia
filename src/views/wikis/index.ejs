@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../static/partials/head.ejs %>
+  </head>
+  <body>
+    <% include ../static/partials/navbar.ejs %>
+    <main class="main-index-wikis">
+        <h1>Wikis</h1>
+        <table class="table table-bordered table-hover table-index-wikis">
+    
+            <thead>
+                <tr>
+                  <th class="table-wikis-head">Wikis</th>
+                  <th class="table-edit-head">edit</th>
+                  <th>delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% wikis.forEach((wiki) => { %>
+                  <tr>
+                    <td>
+                      <a href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>
+                    </td>
+                    <td>
+                        <a href="/wikis/<%= wiki.id %>/edit" class="btn btn-warning">Edit</a>
+                    </td>
+                    <td>
+                      <form style="display:initial" action="/wikis/<%= wiki.id %>/destroy" method="post">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                      </form>
+                    </td>
+                  </tr>
+                <% }) %>
+              </tbody>
+        </table>
+
+        <% if(currentUser) { %>
+          <a href="wikis/new" class="btn btn-primary btn-lg">New wiki</a>
+        <% } %>
+
+    </main>
+    
+  </body>
+</html>

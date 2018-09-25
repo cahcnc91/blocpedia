@@ -12,6 +12,7 @@
             <thead>
                 <tr>
                   <th class="table-wikis-head">Wikis</th>
+                  <th class="table-wikis-head">by user</th>
                   <th class="table-edit-head">edit</th>
                   <th>delete</th>
                 </tr>
@@ -22,11 +23,17 @@
                     <td>
                       <a href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>
                     </td>
+
                     <td>
-                        <% if(currentUser) { %>
-                          <a href="/wikis/<%= wiki.id %>/edit" class="btn btn-warning">Edit</a>
-                        <% } %>
+                      <p>will be username</p>
                     </td>
+
+                    <td>
+                      <% if(currentUser) { %>
+                        <a href="/wikis/<%= wiki.id %>/edit" class="btn btn-warning">Edit</a>
+                      <% } %>
+                    </td>
+
                     <td>
                       <% if(currentUser) { %>
                         <form style="display:initial" action="/wikis/<%= wiki.id %>/destroy" method="post">

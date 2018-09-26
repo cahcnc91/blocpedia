@@ -17,9 +17,18 @@
 
       <p><%= `Your account is currently ${user.role}.` %></p>
 
-      <a href="/users/upgrade" class="btn btn-primary">Upgrade</a>
+      <% if(currentUser && currentUser.role == "standard") { %>
 
+        <a href="/users/upgrade" class="btn btn-primary">Upgrade</a>
+      
+      <% } else if(currentUser && currentUser.role === "premium") { %>
 
+        <a href="/users/upgrade" class="btn btn-primary">Downgrade</a>
+      
+      <% } %>
+
+  
+        
 
       <hr>
 

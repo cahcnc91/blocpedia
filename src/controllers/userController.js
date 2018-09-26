@@ -1,9 +1,7 @@
 const userQueries = require("../db/queries.users.js");
 const passport = require("passport");
 const sgMail = require('@sendgrid/mail');
-var stripe = require("stripe")("pk_test_wsq16KTKgaWFzlVvr9WBqYDm");
- // Using Express
-//const SENDGRID_API_KEY = require("../../sendgrid.js");
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 
 module.exports = {
@@ -28,11 +26,8 @@ module.exports = {
             } else {
                         
                 passport.authenticate("local")(req, res, () => {
-                    const SENDGRID_API_KEY = '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';
-                    sgMail.setApiKey(SENDGRID_API_KEY);
-                    //sgMail.setApiKey(SENDGRID_API_KEY.sendgridKey);
-                    //console.log(SENDGRID_API_KEY.sendgridKey);
-                    
+                  
+                    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
                     const msg = {
                       to: newUser.email,
                       from: 'test@gmail.com',
@@ -114,12 +109,6 @@ module.exports = {
          });
     },
 
- /*   upgrade(req, res, next){
-      res.render("users/upgrade");
-  },
-
-  */
-
       upgrade(req, res, next){
         res.render("users/upgrade"); 
       },
@@ -132,14 +121,13 @@ module.exports = {
           })
           .then((customer) => {
               stripe.charges.create({
-                  amount: 1,
+                  amount: 1500,
                   description: "Blocipedia Premium Membership",
                   currency: "USD",
                   customer: customer.id
               })
           })
           .then((charge) => {
-            console.log('payment success!')
               userQueries.upgrade(req.user.dataValues.id);
               res.render("users/payment");
           })
@@ -147,7 +135,6 @@ module.exports = {
 
       downgrade(req, res, next){
           userQueries.downgrade(req.user.dataValues.id);
-          wikiQueries.toPublic(req.user.dataValues.id);
           req.flash("notice", "Your account has been downgraded to a Standard Membership");
           res.redirect("/");
       },

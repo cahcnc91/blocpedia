@@ -86,7 +86,7 @@ module.exports = {
                 res.render("wikis/edit", {wiki});
             } else {
                 req.flash("You are not authorized to do that.")
-                res.redirect(`/wikiss/${req.params.id}`)
+                res.redirect(`/wikis/${req.params.id}`)
             }
           }
         });

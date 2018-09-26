@@ -23,17 +23,14 @@
                     <td>
                       <a href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>
                     </td>
-
                     <td>
                       <p>will be username</p>
                     </td>
-
                     <td>
                       <% if(currentUser) { %>
                         <a href="/wikis/<%= wiki.id %>/edit" class="btn btn-warning">Edit</a>
                       <% } %>
                     </td>
-
                     <td>
                       <% if(currentUser) { %>
                         <form style="display:initial" action="/wikis/<%= wiki.id %>/destroy" method="post">

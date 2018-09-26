@@ -3,11 +3,11 @@ body {
 }
 
 .jumbotron {
-  width: 55%;
+  width: 60%;
   background-color: #e3e0cc;
   display: block;
   margin: auto;
-  padding: 5%;
+  padding: 3%;
   margin-top:3%;
 }
 

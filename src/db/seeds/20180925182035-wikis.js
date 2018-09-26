@@ -9,7 +9,7 @@ const faker = require("faker");
      title: faker.hacker.noun(),
      body: faker.hacker.phrase(),
      private: false,
-     userId:  Math.floor(Math.random() * (30 - 21)) + 21,
+     userId:  Math.floor(Math.random() * (10 - 1)) + 1,
      createdAt: new Date(),
      updatedAt: new Date()
    });

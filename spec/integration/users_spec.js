@@ -31,6 +31,19 @@ describe("routes : users", () => {
 
   });
 
+  describe("GET /users/upgrade", () => {
+
+    it("should render a view with a sign up form", (done) => {
+      request.get(`${base}upgrade`, (err, res, body) => {
+        expect(err).toBeNull();
+        expect(body).toContain("Premium Membership");
+        done();
+      });
+    });
+
+  });
+
+
   describe("POST /users", () => {
 
         it("should create a new user with valid values and redirect", (done) => {

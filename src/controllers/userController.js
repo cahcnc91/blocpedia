@@ -1,6 +1,8 @@
 const userQueries = require("../db/queries.users.js");
 const passport = require("passport");
 const sgMail = require('@sendgrid/mail');
+var stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
+ // Using Express
 //const SENDGRID_API_KEY = require("../../sendgrid.js");
 
 
@@ -22,7 +24,7 @@ module.exports = {
             if(err){
                 req.flash("error", err);
                 console.log(err);
-                res.redirect("/users/sign_up");
+                res.redirect("/");
             } else {
                         
                 passport.authenticate("local")(req, res, () => {
@@ -52,7 +54,7 @@ module.exports = {
                        
                 
                     req.flash("notice", "You've successfully signed in!");
-                    res.redirect("/");
+                    res.redirect("/wikis");
                  })
 
             }
@@ -73,7 +75,10 @@ module.exports = {
             }
             req.logIn(user, function(err) {
               if (err) { return next(err); }
-              return res.redirect('/');
+
+             
+                  res.redirect("/wikis");
+                
             });
           })(req, res, next);
 
@@ -93,6 +98,44 @@ module.exports = {
         req.logout();
         req.flash("notice", "You've successfully signed out!");
         res.redirect("/");
-    }
+    },
+
+    show(req, res, next){
+
+         userQueries.getUser(req.params.id, (err, result) => {
+     
+           if(err || result.user === undefined){
+             req.flash("notice", "No user found with that ID.");
+             res.redirect("/");
+           } else {
+     
+             res.render("users/show", {...result});
+           }
+         });
+    },
+
+    upgrade(req, res, next){
+      res.render("users/upgrade");
+  },
+
+  paymentUpgrade(req, res, next) {
+    const token = request.body.stripeToken;
+
+    const charge = stripe.charges.create({
+      amount: 15,
+      currency: 'usd',
+      description: 'Blocpedia Premium Account',
+      source: token,
+    })
+
+    .then((charge) => {
+      userQueries.upgradeUser(req.dataValues.id);
+      
+
+    })
+
+    
+
+  }
 
 }

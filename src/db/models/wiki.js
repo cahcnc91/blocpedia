@@ -26,6 +26,16 @@ module.exports = (sequelize, DataTypes) => {
     });
    
   };
+
+  Wiki.addScope("allWikis", (userId) => {
+ 
+        return {
+          where: { userId: userId},
+ 
+          order: [["createdAt", "DESC"]]
+        }
+      });
+   
   
   return Wiki;
 };

@@ -114,6 +114,7 @@ module.exports = {
       },
 
       payment(req, res, next){
+        console.log(process.env.STRIPE_SECRET_KEY);
 
           stripe.customers.create({
               email: req.body.stripeEmail,

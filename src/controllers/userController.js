@@ -1,7 +1,7 @@
 const userQueries = require("../db/queries.users.js");
 const passport = require("passport");
 const sgMail = require('@sendgrid/mail');
-var stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
+var stripe = require("stripe")("pk_test_wsq16KTKgaWFzlVvr9WBqYDm");
  // Using Express
 //const SENDGRID_API_KEY = require("../../sendgrid.js");
 
@@ -114,28 +114,50 @@ module.exports = {
          });
     },
 
-    upgrade(req, res, next){
+ /*   upgrade(req, res, next){
       res.render("users/upgrade");
   },
 
-  paymentUpgrade(req, res, next) {
-    const token = request.body.stripeToken;
+  */
 
-    const charge = stripe.charges.create({
-      amount: 15,
-      currency: 'usd',
-      description: 'Blocpedia Premium Account',
-      source: token,
-    })
+      upgrade(req, res, next){
+        res.render("users/upgrade"); 
+      },
 
-    .then((charge) => {
-      userQueries.upgradeUser(req.dataValues.id);
+      payment(req, res, next){
+
+          stripe.customers.create({
+              email: req.body.stripeEmail,
+              source: req.body.stripeToken
+          })
+          .then((customer) => {
+              stripe.charges.create({
+                  amount: 1,
+                  description: "Blocipedia Premium Membership",
+                  currency: "USD",
+                  customer: customer.id
+              })
+          })
+          .then((charge) => {
+            console.log('payment success!')
+              userQueries.upgrade(req.user.dataValues.id);
+              res.render("users/payment");
+          })
+      },
+
+      downgrade(req, res, next){
+          userQueries.downgrade(req.user.dataValues.id);
+          wikiQueries.toPublic(req.user.dataValues.id);
+          req.flash("notice", "Your account has been downgraded to a Standard Membership");
+          res.redirect("/");
+      },
+
+      paymentDone(req, res, next){
+        res.render("users/payment"); 
+      },
+
       
 
-    })
 
-    
-
-  }
 
 }

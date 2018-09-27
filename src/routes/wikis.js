@@ -8,7 +8,11 @@ router.get("/wikis", wikiController.index);
 
 router.get("/wikis/new", wikiController.new);
 
+router.get("/wikis/new_private", wikiController.newPrivate);
+
 router.post("/wikis/create", wikiController.create);
+
+router.post("/wikis/create_private", wikiController.createPrivate);
 
 router.get("/wikis/:id", wikiController.show);
 

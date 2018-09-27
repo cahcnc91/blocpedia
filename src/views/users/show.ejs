@@ -42,6 +42,7 @@
                   <th class="table-wikis-head">Wikis</th>
                   <th class="table-edit-head">edit</th>
                   <th>delete</th>
+                  <th>private</th>
                 </tr>
               </thead>
               <tbody>
@@ -64,11 +65,23 @@
                             </form>
                           <% } %>
                         </td>
+
+                        <td>
+                            <%= wiki.private %>
+                        </td>
                       </tr>
                     <% }) %>
                   <% } %>
               </tbody>
         </table>
+
+        <% if(currentUser && currentUser.role == "premium") { %>
+
+          <a href="/wikis/new_private" class="btn btn-primary">Create Private Wiki</a>
+        
+        <% } %>
+
+
   
 
       

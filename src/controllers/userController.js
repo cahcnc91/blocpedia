@@ -144,8 +144,5 @@ module.exports = {
         res.render("users/payment"); 
       },
 
-      
-
-
 
 }

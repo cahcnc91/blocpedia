@@ -25,8 +25,16 @@ module.exports = class ApplicationPolicy {
     return this.user != null;
   }
 
+  newPrivate() {
+    return this._isPremium();
+  }
+
   create() {
     return this.new();
+  }
+
+  createPrivate() {
+    return this._isPremium() || this._isAdmin();
   }
 
   show() {
@@ -34,13 +42,13 @@ module.exports = class ApplicationPolicy {
   }
 
   edit() {
-   if (this.record.private == false) {
-     return this.new() &&
-       this.record && (this._isStandard() || this._isPremium() || this._isAdmin());
-     } else if (this.record.private == true) {
-       return this.new() &&
-         this.record && (this._isPremium()  || this._isAdmin() || this._isStandard());
-     }
+    if (this.record.private == false) {
+      return this.new() &&
+        this.record && (this._isStandard() || this._isPremium() || this._isAdmin());
+      } else if (this.record.private == true) {
+        return this.new() &&
+         (this.record && this._isOwner && this._isPremium()) || this._isAdmin();
+      }
     
   }
 

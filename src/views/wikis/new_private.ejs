@@ -7,11 +7,11 @@
     <% include ../static/partials/navbar.ejs %>
 
     <main class="container">
-      <h1>New Public Wiki</h1>
+      <h1>New  Private Wiki</h1>
 
-      <% if(currentUser && currentUser.role == "standard" || currentUser.role === "premium" || currentUser.role === "admin") { %>
+      <% if(currentUser && currentUser.role === "premium" || currentUser.role === "admin") { %>
 
-        <form action="/wikis/create" method="post">
+        <form action="/wikis/create_private" method="post">
           <div class="form-group">
             <label for="title">Wiki title</label>
             <input type="text" class="form-control" name="title" aria-describedby="titleHelp" placeholder="Enter Title">
@@ -24,6 +24,8 @@
         </form>
       
       <% } %>
+      
+   
     </main>
 
     <% include ../static/partials/baseScripts.ejs %>

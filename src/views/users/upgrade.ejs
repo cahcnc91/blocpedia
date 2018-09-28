@@ -31,6 +31,7 @@
         
      <% } else if(currentUser && currentUser.role === "premium") { %>
       <h5>Downgrade your membership</h5>
+      <p>All your private wikis will became public.</p>
       <form action="/users/<%=currentUser.id%>/downgrade" method="POST">
         <button type="submit" class="btn btn-danger">Standard Membership</button>
       </form>

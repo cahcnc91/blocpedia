@@ -49,7 +49,6 @@ module.exports = class ApplicationPolicy {
         return this.new() &&
          (this.record && this._isOwner && this._isPremium()) || this._isAdmin();
       }
-    
   }
 
   update() {

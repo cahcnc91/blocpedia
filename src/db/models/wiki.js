@@ -34,7 +34,8 @@ module.exports = (sequelize, DataTypes) => {
  
           order: [["createdAt", "DESC"]]
         }
-      });
+  });
+
    
   
   return Wiki;

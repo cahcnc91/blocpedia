@@ -63,17 +63,35 @@ module.exports = {
     },
 
     downgrade(id, callback){
+        let result = {};
         return User.findById(id)
         .then((user) => {
             if(!user){
                 return callback("User does not exist");
             } else {
-                return user.updateAttributes({role: "standard"});
+                
+                Wiki.update({
+                    private: false,
+                  }, {
+                    where: {
+                      userId:user.id
+                    }
+                  }
+                )
+                return user.updateAttributes({role: "standard"})    
             }
+            
         })
         .catch((err) => {
             callback(err);
         })
+                          
     }
+
+
+
+        
+
+
 
 }

@@ -16,14 +16,13 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       defaultValue: "standard"
     }
-   
   }, {});
+
   User.associate = function(models) {
     User.hasMany(models.Wiki, {
       foreignKey: "userId",
       as: "posts"
     });
-
 
   };
 

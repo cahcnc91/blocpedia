@@ -12,7 +12,7 @@
           <div class="panel panel-default panel-wikis-show">
               <h1 class="panel-heading"><%= wiki.title %></h1>
               <p><%= wiki.userId %></p>
-              <p class="panel-body"><%= wiki.body %></p>
+              <p class="panel-body"><%- wiki.body %></p>
           </div>
 
           <% if (currentUser && wiki.private === false) { %>

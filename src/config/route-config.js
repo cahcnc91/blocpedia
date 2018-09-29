@@ -3,6 +3,8 @@ module.exports = {
       const staticRoutes = require("../routes/static");
       const userRoutes = require("../routes/users");
       const wikisRoutes = require("../routes/wikis");
+      const collaboratorRoutes = require("../routes/collaborator");
+
 
       
       if(process.env.NODE_ENV === "test") {
@@ -13,5 +15,6 @@ module.exports = {
       app.use(staticRoutes);
       app.use(userRoutes);
       app.use(wikisRoutes);
+      app.use(collaboratorRoutes);
     }
   }

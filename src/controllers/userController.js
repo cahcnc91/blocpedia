@@ -103,7 +103,6 @@ module.exports = {
              req.flash("notice", "No user found with that ID.");
              res.redirect("/");
            } else {
-     
              res.render("users/show", {...result});
            }
          });
@@ -141,6 +140,17 @@ module.exports = {
       paymentDone(req, res, next){
         res.render("users/payment"); 
       },
+
+      collaboratorList(req, res, next){
+        userQueries.getAllUsers((err, users) => {
+
+            if(err){
+                res.redirect(500, "wikis/index");
+            } else {
+                res.render("wikis/index", {wikis});
+            }
+        })
+    },
 
 
 }

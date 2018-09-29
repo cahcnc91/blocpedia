@@ -23,7 +23,10 @@
               <textarea rows="4" class="form-control" name="body" placeholder="Enter Body"><%= wiki.body %></textarea>
             </div>
             <button type="submit" class="btn btn-primary button-edit">Update</button>
+            <a href="/wikis/<%= wiki.id %>/edit/collaborator" type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Add colab</a> 
           </form>
+
+
       
     </main>
 

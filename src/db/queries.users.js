@@ -48,6 +48,17 @@ module.exports = {
        })
     },
 
+    getAllUsers(callback){
+      return User.all()
+  
+      .then((users) => {
+        callback(null, users);
+      })
+      .catch((err) => {
+        callback(err);
+      })
+  },
+
     upgrade(id, callback){
         return User.findById(id)
         .then((user) => {

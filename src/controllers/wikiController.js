@@ -120,23 +120,21 @@ module.exports = {
     edit(req, res, next){
         
         wikiQueries.getWiki(req.params.id, (err, wiki) => {
-            userQueries.getAllUsers((err, users) => {
-                if(err || wiki == null){
-                    console.log(err);
-                    res.redirect(404, "/");
-                } else {
-
-                    const authorized = new Authorizer(req.user, wiki).edit();
-
-                    if(authorized){
-                        res.render("wikis/edit", {users, wiki});
-                    } else {
-                        req.flash("You are not authorized to do that.")
-                        res.redirect(`/wikis/${req.params.id}`)     
-                    }        
-                }
-            });
-        });
+            if(err || wiki == null){
+                console.log(err);
+              res.redirect(404, "/");
+            } else {
+  
+              const authorized = new Authorizer(req.user, wiki).edit();
+  
+              if(authorized){
+                  res.render("wikis/edit", {wiki});
+              } else {
+                  req.flash("You are not authorized to do that.")
+                  res.redirect(`/wikis/${req.params.id}`)
+              }
+            }
+          });
     },
 
     update(req, res, next){

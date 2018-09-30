@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../static/partials/head.ejs %>
+  </head>
+  <body>
+    <% include ../static/partials/navbar.ejs %>
+     <main class="container">
+      <% include ../static/partials/messages.ejs %>
+
+        <h1>Collaborators for <%= wiki.title %> Wiki</h1>
+        
+
+        <h4> Current Collaborators</h4>
+
+        <ul class ="list-group">
+          <% collaborators.forEach((collaborator) => {  %>
+            <li class="list-group-item">
+                <form action="/wikis/<%= wiki.id %>/collaborator/remove" method="post">
+                  <p><%= collaborator.User.email %></p>
+                  <button type="submit" class="btn btn-danger">Remove</button>
+                  <input type="hidden" value="<%= collaborator.id %>" class="form-control" name="id" >
+                </form>
+              
+            </li>
+          <% }) %>
+        </ul>
+
+        <h4>Add</h4>
+
+        <% usersNotCollaborator.forEach((userNotCollaborator) => {  %>
+          <li class="list-group-item">
+              <% if(currentUser.id === userNotCollaborator.id) { %>
+                <p><%= userNotCollaborator.email %></p>
+                <small class="text-muted" id="passwordHelp">You can not add yourself as a collaborator</small>
+              <% } else { %>
+                <form action="/wikis/<%= wiki.id %>/collaborator/add" method="post">
+                  <p><%= userNotCollaborator.email %></p>
+                  <button class="btn btn-primary">Add</button>
+                  <input type="hidden" value="<%= userNotCollaborator.email %>" class="form-control" name="email" >
+                </form>
+              <% } %>
+          </li>
+        <% }) %>
+
+
+
+
+
+
+
+        
+
+</body>
+</html>

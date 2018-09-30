@@ -141,16 +141,5 @@ module.exports = {
         res.render("users/payment"); 
       },
 
-      collaboratorList(req, res, next){
-        userQueries.getAllUsers((err, users) => {
-
-            if(err){
-                res.redirect(500, "wikis/index");
-            } else {
-                res.render("wikis/index", {wikis});
-            }
-        })
-    },
-
 
 }

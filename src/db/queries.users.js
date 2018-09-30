@@ -1,6 +1,8 @@
 const User = require("./models").User;
+const Collaborator = require("./models").Collaborator;
 const bcrypt = require("bcryptjs");
 const Wiki = require("./models").Wiki;
+const sequelize = require("sequelize");
 
 
 module.exports = {
@@ -48,16 +50,20 @@ module.exports = {
        })
     },
 
-    getAllUsers(callback){
-      return User.all()
-  
-      .then((users) => {
-        callback(null, users);
+    getUsersNotCollaborator(callback){
+      User.findAll({
+        exclude: [{
+          model: Collaborator,
+          where: { id: sequelize.col('user.id') }
+        }]
+      })
+      .then((usersNotCollaborator) => {
+        callback(null, usersNotCollaborator);
       })
       .catch((err) => {
         callback(err);
       })
-  },
+    },
 
     upgrade(id, callback){
         return User.findById(id)

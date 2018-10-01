@@ -58,61 +58,76 @@ module.exports = {
     })
   },
 
-    deleteWiki(req, callback){
+    deleteWiki(id, req, callback){
 
-      return Wiki.findById(req.params.id)
+      let result = {};
+      Wiki.findById(id)
+
       .then((wiki) => {
-       
-        const authorized = new Authorizer(req.user, wiki).destroy();
-       
-        if(authorized) {
-          wiki.destroy()
-          .then((res) => {
-            callback(null, wiki);
-          });
-                
-        } else {
-       
-          req.flash("notice", "You are not authorized to do that.")
-          callback(401);
-        }
+          if(!wiki){
+              callback(404);
+              console.log('Not Found')
+          } else {
+ 
+              result["wiki"] = wiki;
+              Collaborator.scope({method: ["collaboratorsFor", id]}).all()
+              .then((collaborators) => {
+                  result["collaborators"] = collaborators;
+                  callback(null, result);
+
+                  const authorized = new Authorizer(req.user, wiki, collaborators).destroy();
+                    
+                  if(authorized) {
+                    wiki.destroy()
+                    .then((res) => {
+                      callback(null, wiki);
+                    });
+
+                  } else {
+                    req.flash("notice", "You are not authorized to do that.")
+                    callback(401);
+                  }
+              })
+          }
       })
-      .catch((err) => {
-        callback(err);
-      });
           
     },
 
     
 
-    updateWiki(req, updatedWiki, callback){
+    updateWiki(id, updatedWiki, req, callback){
         
-      return Wiki.findById(req.params.id)
-      .then((wiki) => {
- 
-        if(!wiki){
-          return callback("Wiki not found");
-        }
- 
-        const authorized = new Authorizer(req.user, wiki).update();
- 
-        if(authorized) {
- 
-          wiki.update(updatedWiki, {
-            fields: Object.keys(updatedWiki)
-          })
-          .then(() => {
-            callback(null, wiki);
-          })
-          .catch((err) => {
-            callback(err);
-          });
-        } else {
-          req.flash("notice", "You are not authorized to do that.");
-          callback("Forbidden");
-        }
-      });
+      let result = {};
+      Wiki.findById(id)
 
+      .then((wiki) => {
+          if(!wiki){
+              callback(404);
+              console.log('Not Found')
+          } else {
+ 
+              result["wiki"] = wiki;
+              Collaborator.scope({method: ["collaboratorsFor", id]}).all()
+              .then((collaborators) => {
+                  result["collaborators"] = collaborators;
+                  callback(null, result);
+
+                  const authorized = new Authorizer(req.user, wiki, collaborators).update();
+ 
+                  if(authorized) {
+                    
+                    wiki.update(updatedWiki, {
+                      fields: Object.keys(updatedWiki)
+                    })
+
+                  } else {
+                    req.flash("notice", "You are not authorized to do that.");
+                    console.log('not authorized');
+                    callback("Forbidden");
+                  }
+              })
+          }
+      })
     },
 
     upgradeUser(id, callback) {

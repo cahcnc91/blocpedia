@@ -65,7 +65,7 @@ module.exports = {
         passport.authenticate('local', function(err, user, info) {
             if (err) { return next(err); }
             if (!user) { 
-                req.flash("notice", "Login info incorrect!");
+                req.flash("notice", "Login info incorrect");
                 return res.redirect('/users/sign_in'); 
             }
             req.logIn(user, function(err) {

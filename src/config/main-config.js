@@ -20,7 +20,7 @@ module.exports = {
         app.use(cookieParser());
         app.use(session({
             secret: process.env.cookieSecret,
-            resave: true,
+            resave: false,
             saveUninitialized: true,
             cookie: { maxAge: 1.21e+9 }
         }));

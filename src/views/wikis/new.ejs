@@ -9,6 +9,8 @@
     <main class="container">
       <h1>New Public Wiki</h1>
 
+      <% include ../static/partials/messages.ejs %>
+
       <% if(currentUser && currentUser.role == "standard" || currentUser.role === "premium" || currentUser.role === "admin") { %>
 
         <form action="/wikis/create" method="post">

@@ -9,6 +9,8 @@
     <main class="container">
       <h1>New  Private Wiki</h1>
 
+      <% include ../static/partials/messages.ejs %>
+
       <% if(currentUser && currentUser.role === "premium" || currentUser.role === "admin") { %>
 
         <form action="/wikis/create_private" method="post">

@@ -58,40 +58,30 @@ module.exports = {
     })
   },
 
-    deleteWiki(id, req, callback){
+  deleteWiki(req, callback){
 
-      let result = {};
-      Wiki.findById(id)
-
-      .then((wiki) => {
-          if(!wiki){
-              callback(404);
-              console.log('Not Found')
-          } else {
- 
-              result["wiki"] = wiki;
-              Collaborator.scope({method: ["collaboratorsFor", id]}).all()
-              .then((collaborators) => {
-                  result["collaborators"] = collaborators;
-                  callback(null, result);
-
-                  const authorized = new Authorizer(req.user, wiki, collaborators).destroy();
-                    
-                  if(authorized) {
-                    wiki.destroy()
-                    .then((res) => {
-                      callback(null, wiki);
-                    });
-
-                  } else {
-                    req.flash("notice", "You are not authorized to do that.")
-                    callback(401);
-                  }
-              })
-          }
-      })
-          
-    },
+    return Wiki.findById(req.params.id)
+    .then((wiki) => {
+     
+      const authorized = new Authorizer(req.user, wiki).destroy();
+     
+      if(authorized) {
+        wiki.destroy()
+        .then((res) => {
+          callback(null, wiki);
+        });
+              
+      } else {
+     
+        req.flash("notice", "You are not authorized to do that.")
+        callback(401);
+      }
+    })
+    .catch((err) => {
+      callback(err);
+    });
+        
+  },
 
     
 

@@ -22,6 +22,14 @@ module.exports = class ApplicationPolicy {
       return this.user && this.user.role == "premium";
   }
 
+  _isCollaborator() {
+    this.collaborators.forEach(collaborator => {
+      if(collaborator.userId === this.user.id) {
+        return true;
+      }
+    })  
+  }
+
   new() {
     return this.user != null;
   }
@@ -46,9 +54,13 @@ module.exports = class ApplicationPolicy {
     if (this.record.private == false) {
       return this.new() &&
         this.record && (this._isStandard() || this._isPremium() || this._isAdmin());
+      } else if (this.record.private == true && this.collaborators) {
+        console.log('condition 2')
+        return this.new() &&
+         (this.record && this._isPremium()) || this._isAdmin() || this._isCollaborator();
       } else if (this.record.private == true) {
         return this.new() &&
-         (this.record && this._isOwner && this._isPremium()) || this._isAdmin() || this.user.id === this.collaborators;
+        (this.record && this._isPremium() && this._isOwner()) || this._isAdmin()
       }
   }
 

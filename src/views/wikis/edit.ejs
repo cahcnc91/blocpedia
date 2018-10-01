@@ -11,6 +11,8 @@
 
       <h1>Edit Wiki</h1>
 
+      <% if(currentUser) { %>
+
           <form action="/wikis/<%= wiki.id %>/update" method="post">
             <div class="form-group">
               <label for="title">Wiki title</label>
@@ -23,8 +25,11 @@
               <textarea rows="4" class="form-control" name="body" placeholder="Enter Body"><%= wiki.body %></textarea>
             </div>
             <button type="submit" class="btn btn-primary button-edit">Update</button>
-            <a href="/wikis/<%= wiki.id %>/collaborator/show" class="btn btn-primary">Collaborators</a> 
+            <% if(currentUser.role === "premium") { %>
+              <a href="/wikis/<%= wiki.id %>/collaborator/show" class="btn btn-primary">Collaborators</a> 
+            <% } %>
           </form>
+      <% } %>
 
 
       

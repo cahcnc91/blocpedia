@@ -14,7 +14,17 @@ module.exports = {
                 if(err || wiki == null) {
                     res.redirect(404, "/");
                 } else {
-                    res.render("collaborator/show", {wiki, collaborators, usersNotCollaborator}); 
+
+                    const authorized = new Authorizer(req.user, wiki, collaborators).createPrivate()
+
+                    if(authorized) {
+                        res.render("collaborator/show", {wiki, collaborators, usersNotCollaborator}); 
+                    } else {
+                        req.flash("notice", "You are not authorized to do that.");
+                        res.redirect(`/wikis/${req.params.wikiId}`)
+
+                    }
+                    
                 }
                 
             })
@@ -23,7 +33,6 @@ module.exports = {
     },
 
     addCollaborator(req, res, next) {
-        console.log(req.user)
         collaboratorQueries.addCollaborator(req, (err, collaborator) => {
           if(err) {
               req.flash("error", err);
@@ -33,7 +42,6 @@ module.exports = {
       },
 
     removeCollaborator(req, res, next) {
-        console.log(req.body)
           collaboratorQueries.removeCollaborator(req, (err, collaborator) => {
               if(err){
                 req.flash("error", err);

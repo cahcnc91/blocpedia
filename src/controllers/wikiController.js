@@ -13,7 +13,7 @@ module.exports = {
                 res.redirect(500, "static/index");
             } else {
                 res.render("wikis/index", {wikis});
-            }
+    u        }
         })
     },
     

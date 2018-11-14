@@ -2,7 +2,7 @@
   "development": {
     "username": "postgres",
     "password": null,
-    "database": "blocpedia-dev",
+    "database": "cookopedia-dev",
     "host": "127.0.0.1",
     "dialect": "postgres",
     "logging": false,
@@ -11,7 +11,7 @@
   "test": {
     "username": "postgres",
     "password": null,
-    "database": "blocpedia-test",
+    "database": "cookopedia-test",
     "dialect": "postgres",
     "logging": false,
     "operatorsAliases": false
@@ -19,7 +19,7 @@
   "production": {
     "username": "postgres",
     "password": null,
-    "database": "cahcnc91-blocpedia",
+    "database": "cahcnc91-cookopedia",
     "host": "127.0.0.1",
     "dialect": "postgres",
     "logging": false,

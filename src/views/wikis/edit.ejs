@@ -11,13 +11,13 @@
 
         <% include ../static/partials/messages.ejs %>
 
-      <h1>Edit Wiki</h1>
+      <h1>Edit Recipe</h1>
 
       <% if(currentUser) { %>
 
           <form action="/wikis/<%= wiki.id %>/update" method="post">
             <div class="form-group">
-              <label for="title">Wiki title</label>
+              <label for="title">Recipe title</label>
     
               <input value="<%= wiki.title %>" type="text" class="form-control" name="title" aria-describedby="titleHelp" placeholder="Enter Title">
             </div>

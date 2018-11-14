@@ -4,43 +4,44 @@
     <% include ../static/partials/head.ejs %>
   </head>
   <body>
-
     <% include ../static/partials/navbar.ejs %>
 
     <main class="container">
-
       <% include ../static/partials/messages.ejs %>
 
       <h1>Membership Options</h1>
 
       <% if(currentUser && currentUser.role == "standard") { %>
-        <h3>Upgrade your membership to Premium</h3>
-        <h4>As a Premium Member you will be able to create and colaborate on private wikis</h4>
-        
-        <form action="/users/<%=currentUser.id%>/upgrade" method="POST">
-            <script
-                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                data-key="pk_test_wsq16KTKgaWFzlVvr9WBqYDm"
-                data-amount="1500"
-                data-name="Blocipedia" 
-                data-description="Blocipedia Premium Membership"
-                data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                data-locale="auto">
-            </script>
-        </form>
-        
-     <% } else if(currentUser && currentUser.role === "premium") { %>
+      <h3>Upgrade your membership to Premium</h3>
+      <h4>
+        As a Premium Member you will be able to create and colaborate on private
+        wikis
+      </h4>
+
+      <form action="/users/<%=currentUser.id%>/upgrade" method="POST">
+        <script
+          src="https://checkout.stripe.com/checkout.js"
+          class="stripe-button"
+          data-key="pk_test_wsq16KTKgaWFzlVvr9WBqYDm"
+          data-amount="1500"
+          data-name="Cookopedia"
+          data-description="Cookopedia Premium Membership"
+          data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+          data-locale="auto"
+        ></script>
+      </form>
+
+      <% } else if(currentUser && currentUser.role === "premium") { %>
       <h5>Downgrade your membership</h5>
       <p>All your private wikis will became public.</p>
       <form action="/users/<%=currentUser.id%>/downgrade" method="POST">
-        <button type="submit" class="btn btn-danger">Standard Membership</button>
+        <button type="submit" class="btn btn-danger">
+          Standard Membership
+        </button>
       </form>
-    <% } %>
-    
+      <% } %>
     </main>
 
     <% include ../static/partials/baseScripts.ejs %>
-
   </body>
-
-  </html>
+</html>

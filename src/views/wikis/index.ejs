@@ -8,12 +8,12 @@
     <main class="main-index-wikis">
 
         <% include ../static/partials/messages.ejs %>
-        <h1>Wikis</h1>
+        <h1>Recipes</h1>
         <table class="table table-bordered table-hover table-index-wikis">
     
             <thead>
                 <tr>
-                  <th class="table-wikis-head">Wikis</th>
+                  <th class="table-wikis-head">Recipes</th>
                   <th class="table-wikis-head">by user</th>
                 </tr>
               </thead>
@@ -32,7 +32,7 @@
         </table>
 
         <% if(currentUser) { %>
-          <a href="wikis/new" class="btn btn-primary btn-lg">New wiki</a>
+          <a href="wikis/new" class="btn btn-primary btn-lg">New recipe</a>
         <% } %>
 
     </main>

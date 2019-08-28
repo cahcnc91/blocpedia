@@ -1,4 +1,7 @@
-body {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+npx tailwind build styles.css -o output.css body {
   padding-top: 70px;
 }
 

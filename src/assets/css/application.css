@@ -8,7 +8,7 @@ body {
   display: block;
   margin: auto;
   padding: 3%;
-  margin-top:3%;
+  margin-top: 3%;
 }
 
 .jumbotron h3 {
@@ -23,8 +23,8 @@ section.plans {
 
 .table-index-wikis {
   width: 40%;
-  margin-left:auto; 
-  margin-right:auto;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 3%;
   margin-top: 3%;
 }
@@ -64,17 +64,14 @@ section.plans {
 
 .edit-box {
   width: 50%;
-  padding-top:4%;
-  text-align:center;
+  padding-top: 4%;
+  text-align: center;
 }
 
 .edit-box h1 {
-  text-align:center;
+  text-align: center;
 }
 
 .edit-box form {
   padding-top: 3%;
 }
-
-
-

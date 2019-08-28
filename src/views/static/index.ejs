@@ -4,44 +4,40 @@
     <% include ./partials/head.ejs %>
   </head>
   <body>
+    <% include ./partials/navbar.ejs %> <% include
+    ../static/partials/messages.ejs %>
 
-    <% include ./partials/navbar.ejs %>
+    <main class="container">
+      <!-- Jumbotron Header -->
+      <header class="page-header small text-center pagination-centered">
+        <h1 class="display-4 pt-12">Cookopedia: Recipe Wikis</h1>
+      </header>
 
-    <% include ../static/partials/messages.ejs %>
+      <section class="jumbotron text-center">
+        <h3 class="card-title">Create and share Recipe Wikis</h3>
+        <a href="/wikis" class="btn btn-secondary btn-lg">See Wikis</a>
+      </section>
 
-      <main class="container">
+      <section class="row justify-content-center plans">
+        <div class="col-lg-3 text-center">
+          <h5 class="card-title">
+            Create as many public <br />wikis as you want!
+          </h5>
+          <p class="card-text">FREE PLAN<br />$0</p>
+          <a href="/users/sign_up" class="btn btn-secondary btn-lg">Sign up</a>
+        </div>
 
-        <!-- Jumbotron Header -->
-        <header class="page-header small text-center" "pagination-centered">
-          <h1 class="display-4">Cookopedia: Recipe Wikis</h1>
-        </header>
+        <div class="col-lg-3 text-center">
+          <h5 class="card-title">
+            Create private wikis, <br />
+            unlimited amount
+          </h5>
+          <p class="card-text">PREMIUM PLAN<br />$10/month</p>
+          <a href="/users/upgrade" class="btn btn-primary btn-lg">Sign up</a>
+        </div>
+      </section>
+    </main>
 
-        <section class="jumbotron text-center">
-            <h3 class="card-title">Create and share Recipe Wikis</h3>
-            <a href="/wikis" class="btn btn-secondary btn-lg">See Wikis</a>
-            
-
-        </section>
-        
-        <section class="row justify-content-center plans">
-          <div class="col-lg-3 text-center">
-            <h5 class="card-title">Create as many public <br>wikis as you want!</h5>
-            <p class="card-text">FREE PLAN<br>$0</p>
-            <a href="/users/sign_up" class="btn btn-secondary btn-lg">Sign up</a>
-          </div>
-
-          <div class="col-lg-3 text-center">
-            <h5 class="card-title">Create private wikis, <br> unlimited amount</h5>
-            <p class="card-text">PREMIUM PLAN<br>$10/month</p>
-            <a href="/users/upgrade" class="btn btn-primary btn-lg">Sign up</a>
-
-          </div>
-        </section>
-
-
-      </main>
-
-      <% include ./partials/baseScripts.ejs %>
-      
-    </body>
+    <% include ./partials/baseScripts.ejs %>
+  </body>
 </html>

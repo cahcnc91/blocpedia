@@ -9,14 +9,17 @@
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
-    "test": "set NODE_ENV=test && jasmine"
+    "test": "set NODE_ENV=test && jasmine",
+    "dev": "nodemon src/server.js"
   },
   "author": "Camila",
   "license": "ISC",
   "devDependencies": {
     "faker": "^4.1.0",
     "jasmine": "^3.0.0",
-    "request": "^2.83.0"
+    "nodemon": "^1.19.1",
+    "request": "^2.83.0",
+    "webpack": "^4.39.2"
   },
   "dependencies": {
     "@sendgrid/mail": "^6.3.1",

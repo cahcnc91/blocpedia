@@ -10,8 +10,8 @@
   "scripts": {
     "start": "node src/server.js",
     "test": "set NODE_ENV=test && jasmine",
-    "dev": "nodemon src/server.js watch",
-    "build:css": "postcss src/assets/css/application.css -p src/assets/dist/tailwind.css",
+    "dev": "nodemon src/server.js \"watch\"",
+    "build:css": "postcss src/assets/css/application.css -o src/assets/dist/tailwind.css",
     "watch": "watch \"npm run build:css\" ./src "
   },
   "author": "Camila",

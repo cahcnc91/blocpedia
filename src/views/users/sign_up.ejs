@@ -4,40 +4,58 @@
     <% include ../static/partials/head.ejs %>
   </head>
   <body>
-
     <% include ../static/partials/navbar.ejs %>
 
-    <main class="container">
-      <h2>Welcome to Cookopedia</h2>
-      <h1>Sign up</h1>
-
+    <main class="container p-8 mt-12">
       <% include ../static/partials/messages.ejs %>
-      
 
-      <form action="/users" method="post">
+      <form class="w-full flex justify-center" action="/users" method="post">
+        <div class="w-3/6 flex flex-column justify-center">
+          <h2 class="h2">Welcome to Cookopedia</h2>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              name="email"
+              aria-describedby="emailHelp"
+              placeholder="Enter email"
+            />
+            <small class="text-muted" id="emailHelp"
+              >email address must be a valid address</small
+            >
+          </div>
 
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter email">
-          <small class="text-muted" id="emailHelp">email address must be a valid address</small>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              name="password"
+              aria-describedby="passwordHelp"
+              placeholder="Enter password"
+            />
+            <small class="text-muted" id="passwordHelp"
+              >password must match confirmation below</small
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="passwordConfirmation">Password confirmation</label>
+            <input
+              type="password"
+              class="form-control"
+              name="passwordConfirmation"
+              aria-describedby="passwordHelp"
+              placeholder="Enter password confirmation"
+            />
+          </div>
+
+          <button type="submit" class="btn btn-primary m-0">Sign up</button>
         </div>
-
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" class="form-control" name="password" aria-describedby="passwordHelp" placeholder="Enter password">
-          <small class="text-muted" id="passwordHelp">password must match confirmation below</small>
-        </div>
-
-        <div class="form-group">
-          <label for="passwordConfirmation">Password confirmation</label>
-          <input type="password" class="form-control" name="passwordConfirmation" aria-describedby="passwordHelp" placeholder="Enter password confirmation">
-        </div>
-
-        <button type="submit" class="btn btn-primary">Sign up</button>
       </form>
     </main>
 
     <% include ../static/partials/baseScripts.ejs %>
-
   </body>
 </html>

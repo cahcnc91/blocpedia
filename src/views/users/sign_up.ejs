@@ -9,10 +9,12 @@
     <main class="container p-8 mt-12">
       <% include ../static/partials/messages.ejs %>
 
+      <div className="w-full text-center">
+        <h2 class="h2 pb-4 text-center">Welcome to Cookopedia</h2>
+      </div>
       <form class="w-full flex justify-center" action="/users" method="post">
-        <div class="w-3/6 flex flex-column justify-center">
-          <h2 class="h2">Welcome to Cookopedia</h2>
-          <div class="form-group">
+        <div class="w-3/6 flex flex-column">
+          <div class="form-group pb-2">
             <label for="email">Email</label>
             <input
               type="email"
@@ -21,12 +23,9 @@
               aria-describedby="emailHelp"
               placeholder="Enter email"
             />
-            <small class="text-muted" id="emailHelp"
-              >email address must be a valid address</small
-            >
           </div>
 
-          <div class="form-group">
+          <div class="form-group pb-2">
             <label for="password">Password</label>
             <input
               type="password"
@@ -35,12 +34,9 @@
               aria-describedby="passwordHelp"
               placeholder="Enter password"
             />
-            <small class="text-muted" id="passwordHelp"
-              >password must match confirmation below</small
-            >
           </div>
 
-          <div class="form-group">
+          <div class="form-group pb-2">
             <label for="passwordConfirmation">Password confirmation</label>
             <input
               type="password"

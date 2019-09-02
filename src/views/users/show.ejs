@@ -4,11 +4,9 @@
     <% include ../static/partials/head.ejs %>
   </head>
   <body>
-
     <% include ../static/partials/navbar.ejs %>
 
     <main class="container">
-
       <% include ../static/partials/messages.ejs %>
 
       <h1><%= `${user.email}'s profile` %></h1>
@@ -17,78 +15,70 @@
 
       <% if(currentUser && currentUser.role == "standard") { %>
 
-        <a href="/users/upgrade" class="btn btn-primary">Upgrade</a>
-      
+      <a href="/users/upgrade" class="btn btn-primary">Upgrade</a>
+
       <% } else if(currentUser && currentUser.role === "premium") { %>
 
-        <a href="/users/upgrade" class="btn btn-primary">Downgrade</a>
-      
+      <a href="/users/upgrade" class="btn btn-primary">Downgrade</a>
+
       <% } %>
 
-  
-        
+      <hr />
 
-      <hr>
-
-      <h2> My Recipes</h2>
-
+      <h2>My Recipes</h2>
 
       <table class="table table-bordered table-hover table-index-wikis">
-    
-            <thead>
-                <tr>
-                  <th class="table-wikis-head">Recipes</th>
-                  <th class="table-edit-head">edit</th>
-                  <th>delete</th>
-                  <th>private</th>
-                </tr>
-              </thead>
-              <tbody>
-                  <% if(wikis) { %>
-                    <% wikis.forEach((wiki) => { %>
-                      <tr>
-                        <td>
-                          <a href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>
-                        </td>
-                        <td>
-                          <% if(currentUser) { %>
-                            <a href="/wikis/<%= wiki.id %>/edit" class="btn btn-warning">Edit</a>
-                          <% } %>
-                        </td>
-    
-                        <td>
-                          <% if(currentUser) { %>
-                            <form style="display:initial" action="/wikis/<%= wiki.id %>/destroy" method="post">
-                              <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                          <% } %>
-                        </td>
+        <thead>
+          <tr>
+            <th class="table-wikis-head">Recipes</th>
+            <th class="table-edit-head">edit</th>
+            <th>delete</th>
+            <th>private</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if(wikis) { %> <% wikis.forEach((wiki) => { %>
+          <tr>
+            <td>
+              <a href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>
+            </td>
+            <td>
+              <% if(currentUser) { %>
+              <a href="/wikis/<%= wiki.id %>/edit" class="btn btn-warning"
+                >Edit</a
+              >
+              <% } %>
+            </td>
 
-                        <td>
-                            <%= wiki.private %>
-                        </td>
-                      </tr>
-                    <% }) %>
-                  <% } %>
-              </tbody>
-        </table>
+            <td>
+              <% if(currentUser) { %>
+              <form
+                style="display:initial"
+                action="/wikis/<%= wiki.id %>/destroy"
+                method="post"
+              >
+                <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
+              <% } %>
+            </td>
 
-        <% if(currentUser && currentUser.role == "premium") { %>
+            <td>
+              <%= wiki.private %>
+            </td>
+          </tr>
+          <% }) %> <% } %>
+        </tbody>
+      </table>
 
-          <a href="/wikis/new_private" class="btn btn-primary">Create Private Recipes</a>
-        
-        <% } %>
+      <% if(currentUser && currentUser.role == "premium") { %>
 
+      <a href="/wikis/new_private" class="btn btn-primary"
+        >Create Private Recipes</a
+      >
 
-  
-
-      
-
-      
-   
+      <% } %>
     </main>
 
     <% include ../static/partials/baseScripts.ejs %>
-
   </body>
 </html>

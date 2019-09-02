@@ -1,11 +1,29 @@
+const sequelize = require("sequelize");
 const Wiki = require("./models").Wiki;
 const User = require("./models").User;
 const Collaborator = require("./models").Collaborator;
 const Authorizer = require("../policies/application");
+const Op = sequelize.Op;
 
 module.exports = {
   getAllWikis(callback) {
     return Wiki.all()
+      .then(wikis => {
+        callback(null, wikis);
+      })
+      .catch(err => {
+        callback(err);
+      });
+  },
+
+  getWikiByString(string, callback) {
+    return Wiki.findAll({
+      where: {
+        body: {
+          [Op.like]: "%" + string + "%"
+        }
+      }
+    })
 
       .then(wikis => {
         callback(null, wikis);
@@ -78,8 +96,7 @@ module.exports = {
 
   updateWiki(id, updatedWiki, req, callback) {
     let result = {};
-    Wiki.findById(id)
-    .then(wiki => {
+    Wiki.findById(id).then(wiki => {
       if (!wiki) {
         callback(404);
         console.log("Not Found");

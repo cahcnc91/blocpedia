@@ -5,37 +5,33 @@
   </head>
   <body>
     <% include ../static/partials/navbar.ejs %>
-    <main class="main-index-wikis">
+    <main class="main-index-wikis p-8 mt-12">
+      <% include ../static/partials/messages.ejs %>
+      <h1>Recipes</h1>
+      <table class="table table-bordered table-hover table-index-wikis">
+        <thead>
+          <tr>
+            <th class="table-wikis-head">Recipes</th>
+            <th class="table-wikis-head">by user</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% wikis.forEach((wiki) => { %>
+          <tr>
+            <td>
+              <a href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>
+            </td>
+            <td>
+              <p><%= wiki.userId %></p>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
 
-        <% include ../static/partials/messages.ejs %>
-        <h1>Recipes</h1>
-        <table class="table table-bordered table-hover table-index-wikis">
-    
-            <thead>
-                <tr>
-                  <th class="table-wikis-head">Recipes</th>
-                  <th class="table-wikis-head">by user</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% wikis.forEach((wiki) => { %>
-                  <tr>
-                    <td>
-                      <a href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>
-                    </td>
-                    <td>
-                        <p><%= wiki.userId %></p>
-                    </td>
-                  </tr>
-                <% }) %>
-              </tbody>
-        </table>
-
-        <% if(currentUser) { %>
-          <a href="wikis/new" class="btn btn-primary btn-lg">New recipe</a>
-        <% } %>
-
+      <% if(currentUser) { %>
+      <a href="wikis/new" class="btn btn-primary btn-lg">New recipe</a>
+      <% } %>
     </main>
-    
   </body>
 </html>

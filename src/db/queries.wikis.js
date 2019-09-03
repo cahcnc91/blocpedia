@@ -24,7 +24,6 @@ module.exports = {
         }
       }
     })
-
       .then(wikis => {
         callback(null, wikis);
       })

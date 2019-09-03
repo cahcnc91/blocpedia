@@ -2,49 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-/* NAVBAR  */
-
-.jumbotron {
-  width: 60%;
-  background-color: #e3e0cc;
-  display: block;
-  margin: auto;
-  padding: 3%;
-  margin-top: 3%;
-}
-
-.jumbotron h3 {
-  padding: 3%;
-}
-
 section.plans {
   margin-top: 5%;
 }
 
 /* ---INDEX-WIKIS ---*/
 
-.table-index-wikis {
-  width: 40%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 3%;
-  margin-top: 3%;
-}
-
-.main-index-wikis h1 {
-  padding-top: 4%;
-}
-
 .main-index-wikis {
-  text-align: center;
-}
-
-.table-wikis-head {
-  width: 60%;
-}
-
-.table-edit-head {
-  width: 20%;
+  display: flex;
+  justify-content: center;
 }
 
 /*------SHOW-WIKIS-----*/

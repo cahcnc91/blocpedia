@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -7,37 +6,52 @@
   <body>
     <% include ../static/partials/navbar.ejs %>
 
-    <main class="container edit-box">
-
-        <% include ../static/partials/messages.ejs %>
+    <main class="container edit-box p-8 mt-16">
+      <% include ../static/partials/messages.ejs %>
 
       <h1>Edit Recipe</h1>
 
       <% if(currentUser) { %>
 
-          <form action="/wikis/<%= wiki.id %>/update" method="post">
-            <div class="form-group">
-              <label for="title">Recipe title</label>
-    
-              <input value="<%= wiki.title %>" type="text" class="form-control" name="title" aria-describedby="titleHelp" placeholder="Enter Title">
-            </div>
-            <div class="form-group">
-              <label for="body">Body</label>
-    
-              <textarea rows="4" class="form-control" name="body" placeholder="Enter Body"><%= wiki.body %></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary button-edit">Update</button>
-            <% if(currentUser.role === "premium") { %>
-              <a href="/wikis/<%= wiki.id %>/collaborator/show" class="btn btn-primary">Collaborators</a> 
-            <% } %>
-          </form>
+      <form action="/wikis/<%= wiki.id %>/update" method="post">
+        <div class="form-group">
+          <label for="title">Recipe title</label>
+
+          <input
+            value="<%= wiki.title %>"
+            type="text"
+            class="form-control"
+            name="title"
+            aria-describedby="titleHelp"
+            placeholder="Enter Title"
+          />
+        </div>
+        <div class="form-group">
+          <label for="body">Body</label>
+
+          <textarea
+            rows="4"
+            class="form-control"
+            name="body"
+            placeholder="Enter Body"
+          >
+<%= wiki.body %></textarea
+          >
+        </div>
+        <button type="submit" class="btn btn-primary button-edit">
+          Update
+        </button>
+        <% if(currentUser.role === "premium") { %>
+        <a
+          href="/wikis/<%= wiki.id %>/collaborator/show"
+          class="btn btn-primary"
+          >Collaborators</a
+        >
+        <% } %>
+      </form>
       <% } %>
-
-
-      
     </main>
 
     <% include ../static/partials/baseScripts.ejs %>
-
   </body>
 </html>

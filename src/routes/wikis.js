@@ -14,14 +14,14 @@ router.post("/wikis/create", wikiController.create);
 
 router.post("/wikis/create_private", wikiController.createPrivate);
 
-// router.get("/wikis/:id", wikiController.show);
+router.get("/wikis/searchstring", wikiController.getByString);
+
+router.get("/wikis/:id", wikiController.show);
 
 router.post("/wikis/:id/destroy", wikiController.destroy);
 
 router.get("/wikis/:id/edit", wikiController.edit);
 
 router.post("/wikis/:id/update", wikiController.update);
-
-router.get("/wikis/stringsearch", wikiController.getByString);
 
 module.exports = router;

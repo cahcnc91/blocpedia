@@ -15,8 +15,6 @@ module.exports = {
   },
 
   getByString(req, res, next) {
-    console.log(req.query.string);
-
     wikiQueries.getWikiByString(req.query.string, (err, wikis) => {
       if (err) {
         console.log(err);
@@ -95,20 +93,20 @@ module.exports = {
     }
   },
 
-  //   show(req, res, next) {
-  //     wikiQueries.getWikiCollaborator(req.params.id, (err, result) => {
-  //       wiki = result["wiki"];
-  //       collaborators = result["collaborators"];
+  show(req, res, next) {
+    wikiQueries.getWikiCollaborator(req.params.id, (err, result) => {
+      wiki = result["wiki"];
+      collaborators = result["collaborators"];
 
-  //       if (err || wiki == null) {
-  //         res.redirect(404, "/");
-  //       } else {
-  //         wiki.body = md.toHTML(wiki.body);
+      if (err || wiki == null) {
+        res.redirect(404, "/");
+      } else {
+        wiki.body = md.toHTML(wiki.body);
 
-  //         res.render("wikis/show", { wiki, collaborators });
-  //       }
-  //     });
-  //   },
+        res.render("wikis/show", { wiki, collaborators });
+      }
+    });
+  },
 
   destroy(req, res, next) {
     wikiQueries.deleteWiki(req, (err, wiki) => {

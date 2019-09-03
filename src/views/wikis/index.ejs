@@ -5,32 +5,23 @@
   </head>
   <body>
     <% include ../static/partials/navbar.ejs %>
-    <main class="main-index-wikis p-8 mt-12">
+    <main class="main-index-wikis p-8 mt-16">
       <% include ../static/partials/messages.ejs %>
-      <h1>Recipes</h1>
-      <table class="table table-bordered table-hover table-index-wikis">
-        <thead>
-          <tr>
-            <th class="table-wikis-head">Recipes</th>
-            <th class="table-wikis-head">by user</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% wikis.forEach((wiki) => { %>
-          <tr>
-            <td>
-              <a href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>
-            </td>
-            <td>
-              <p><%= wiki.userId %></p>
-            </td>
-          </tr>
-          <% }) %>
-        </tbody>
-      </table>
+      <section class="w-2/4 flex flex-column flex-start">
+        <% wikis.forEach((wiki) => { %>
+          <div class="card p-3 mb-4">
+            <div calss="card-body">
+                <h4 class="card-title text-2xl font-medium"><a href="/wikis/<%= wiki.id %>"><%= wiki.title %></a></h4>
+                <p class="card-text"><%= wiki.body %></p>
+              </div>
+          </div>
+        </div>
+        <% }) %>
+
+      </section>
 
       <% if(currentUser) { %>
-      <a href="wikis/new" class="btn btn-primary btn-lg">New recipe</a>
+      <a href="wikis/new" class="btn btn-primary btn-lg">New Wiki</a>
       <% } %>
     </main>
   </body>

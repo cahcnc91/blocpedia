@@ -6,31 +6,38 @@
   <body>
     <% include ../static/partials/navbar.ejs %>
 
-    <main class="container">
-      <h1>New Private Recipe</h1>
+    <main class="container p-8 mt-16">
+      <h1>New Private Wiki</h1>
 
-      <% include ../static/partials/messages.ejs %>
+      <% include ../static/partials/messages.ejs %> <% if(currentUser &&
+      currentUser.role === "premium" || currentUser.role === "admin") { %>
 
-      <% if(currentUser && currentUser.role === "premium" || currentUser.role === "admin") { %>
+      <form action="/wikis/create_private" method="post">
+        <div class="form-group">
+          <label for="title">Wiki title</label>
+          <input
+            type="text"
+            class="form-control"
+            name="title"
+            aria-describedby="titleHelp"
+            placeholder="Enter Title"
+          />
+        </div>
+        <div class="form-group">
+          <label for="body">Wiki's body</label>
+          <textarea
+            rows="4"
+            class="form-control"
+            name="body"
+            placeholder="Enter Wiki body"
+          ></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
 
-        <form action="/wikis/create_private" method="post">
-          <div class="form-group">
-            <label for="title">Recipe title</label>
-            <input type="text" class="form-control" name="title" aria-describedby="titleHelp" placeholder="Enter Title">
-          </div>
-          <div class="form-group">
-            <label for="body">Recipe's body</label>
-            <textarea rows="4" class="form-control" name="body" placeholder="Enter Wiki body"></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-      
       <% } %>
-      
-   
     </main>
 
     <% include ../static/partials/baseScripts.ejs %>
-
   </body>
 </html>

@@ -6,75 +6,73 @@
   <body>
     <% include ../static/partials/navbar.ejs %>
 
-    <main class="container p-8 mt-16">
+    <main class="flex flex-col text-center justify-center p-10 mt-16">
       <% include ../static/partials/messages.ejs %>
 
-      <h1><%= `${user.email}'s profile` %></h1>
+      <h1><b>Your email: </b><%= `${user.email}'s profile` %></h1>
 
-      <p><%= `Your account is currently ${user.role}.` %></p>
+      <p class=""><%= `Your account is currently ${user.role}.` %></p>
+      <h4 class="pb-4">
+        As a Premium Member you will be able to create and colaborate on private
+        wikis
+      </h4>
 
-      <% if(currentUser && currentUser.role == "standard") { %>
+      <div class="center-div">
+        <% include ../static/partials/messages.ejs %> <% if(currentUser &&
+        currentUser.role == "standard") { %>
 
-      <a href="/users/upgrade" class="btn btn-primary">Upgrade</a>
+        <form action="/users/<%=currentUser.id%>/upgrade" method="POST">
+          <script
+            src="https://checkout.stripe.com/checkout.js"
+            class="stripe-button"
+            data-key="pk_test_wsq16KTKgaWFzlVvr9WBqYDm"
+            data-amount="1500"
+            data-name="Cookopedia"
+            data-description="Cookopedia Premium Membership"
+            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+            data-locale="auto"
+          ></script>
+        </form>
 
-      <% } else if(currentUser && currentUser.role === "premium") { %>
+        <% } else if(currentUser && currentUser.role === "premium") { %>
+        <h5>Downgrade your membership</h5>
+        <p>All your private wikis will became public.</p>
+        <form action="/users/<%=currentUser.id%>/downgrade" method="POST">
+          <button type="submit" class="btn btn-danger">
+            Standard Membership
+          </button>
+        </form>
+        <% } %>
+      </div>
 
-      <a href="/users/upgrade" class="btn btn-primary">Downgrade</a>
+      <hr class="mt-4 mb-4" />
 
-      <% } %>
+      <h2>Your Wikis</h2>
+      <div class="flex justify-center pt-4">
+        <table class="w-2/5 table table-hover">
+          <tbody>
+            <% if(wikis) { %> <% wikis.forEach((wiki) => { %>
+            <tr>
+              <td>
+                <a href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>
+              </td>
 
-      <hr />
-
-      <h2>My Recipes</h2>
-
-      <table class="table table-bordered table-hover table-index-wikis">
-        <thead>
-          <tr>
-            <th class="table-wikis-head">Recipes</th>
-            <th class="table-edit-head">edit</th>
-            <th>delete</th>
-            <th>private</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% if(wikis) { %> <% wikis.forEach((wiki) => { %>
-          <tr>
-            <td>
-              <a href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>
-            </td>
-            <td>
-              <% if(currentUser) { %>
-              <a href="/wikis/<%= wiki.id %>/edit" class="btn btn-warning"
-                >Edit</a
-              >
-              <% } %>
-            </td>
-
-            <td>
-              <% if(currentUser) { %>
-              <form
-                style="display:initial"
-                action="/wikis/<%= wiki.id %>/destroy"
-                method="post"
-              >
-                <button type="submit" class="btn btn-danger">Delete</button>
-              </form>
-              <% } %>
-            </td>
-
-            <td>
-              <%= wiki.private %>
-            </td>
-          </tr>
-          <% }) %> <% } %>
-        </tbody>
-      </table>
+              <td>
+                <%= wiki.private === true ? 'private': 'public' %>
+              </td>
+            </tr>
+            <% }) %> <% } %>
+          </tbody>
+        </table>
+      </div>
 
       <% if(currentUser && currentUser.role == "premium") { %>
 
-      <a href="/wikis/new_private" class="btn btn-primary"
-        >Create Private Recipes</a
-      >
+      <div>
+        <a href="/wikis/new_private" class="btn btn-primary btn-lg"
+          >Create Private</a
+        >
+      </div>
 
       <% } %>
     </main>

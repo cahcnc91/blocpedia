@@ -7,7 +7,7 @@
     <% include ../static/partials/navbar.ejs %>
     <main class="main-index-wikis p-8 mt-16">
       <% include ../static/partials/messages.ejs %>
-      <section class="w-2/4 flex flex-column flex-start">
+      <section class="w-2/4 flex flex-col">
         <% wikis.forEach((wiki) => { %>
           <div class="card p-3 mb-4">
             <div calss="card-body">
@@ -17,12 +17,13 @@
           </div>
         </div>
         <% }) %>
+        <% if(currentUser) { %>
+          <div class="text-center">
+            <a href="wikis/new" class="btn btn-primary btn-lg">New Wiki</a>
+          </div>
+          <% } %>
 
       </section>
-
-      <% if(currentUser) { %>
-      <a href="wikis/new" class="btn btn-primary btn-lg">New Wiki</a>
-      <% } %>
     </main>
   </body>
 </html>

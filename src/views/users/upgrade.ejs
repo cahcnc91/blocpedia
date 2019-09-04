@@ -6,14 +6,11 @@
   <body>
     <% include ../static/partials/navbar.ejs %>
 
-    <main class="container">
-      <% include ../static/partials/messages.ejs %>
-
-      <h1>Membership Options</h1>
-
-      <% if(currentUser && currentUser.role == "standard") { %>
+    <main class="container p-8 mt-16 text-center">
+      <% include ../static/partials/messages.ejs %> <% if(currentUser &&
+      currentUser.role == "standard") { %>
       <h3>Upgrade your membership to Premium</h3>
-      <h4>
+      <h4 class="pb-4">
         As a Premium Member you will be able to create and colaborate on private
         wikis
       </h4>

@@ -43,3 +43,9 @@ section.plans {
 .edit-box form {
   padding-top: 3%;
 }
+
+.center-div {
+  text-align: center;
+  display: inline-block;
+  margin: 0 auto;
+}

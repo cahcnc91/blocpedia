@@ -6,16 +6,12 @@
   <body>
     <% include ../static/partials/navbar.ejs %>
 
-    <main class="container edit-box p-8 mt-16">
-      <% include ../static/partials/messages.ejs %>
+    <main class="container p-8 mt-16 flex justify-center">
+      <% include ../static/partials/messages.ejs %> <% if(currentUser) { %>
 
-      <h1>Edit Recipe</h1>
-
-      <% if(currentUser) { %>
-
-      <form action="/wikis/<%= wiki.id %>/update" method="post">
+      <form class="w-3/5" action="/wikis/<%= wiki.id %>/update" method="post">
         <div class="form-group">
-          <label for="title">Recipe title</label>
+          <label for="title">Title</label>
 
           <input
             value="<%= wiki.title %>"
@@ -38,7 +34,7 @@
 <%= wiki.body %></textarea
           >
         </div>
-        <button type="submit" class="btn btn-primary button-edit">
+        <button type="submit" class="btn btn-info btn-rounded button-edit">
           Update
         </button>
         <% if(currentUser.role === "premium") { %>

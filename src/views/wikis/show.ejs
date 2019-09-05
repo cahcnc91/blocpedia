@@ -4,16 +4,20 @@
     <% include ../static/partials/head.ejs %>
   </head>
   <body>
-    <% include ../static/partials/navbar.ejs %>
-
     <main>
       <section class="container show-wiki-container p-8 mt-16">
+        <% include ../static/partials/navbar.ejs %>
         <div class="panel panel-default panel-wikis-show">
           <h1 class="panel-heading"><%= wiki.title %></h1>
           <p><%= wiki.userId %></p>
           <p class="panel-body"><%- wiki.body %></p>
         </div>
+        <% if(currentUser && wiki.private === true && wiki.userId ===
+        currentUser.id) { %>
         <a href="/wikis/<%= wiki.id %>/edit" class="btn btn-warning">Edit</a>
+        <% } else if (currentUser && wiki.private === false) { %>
+        <a href="/wikis/<%= wiki.id %>/edit" class="btn btn-warning">Edit</a>
+        <% } %>
       </section>
     </main>
 
